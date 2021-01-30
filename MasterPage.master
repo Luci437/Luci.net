@@ -1,0 +1,351 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>
+        <asp:ContentPlaceHolder ID="title" runat="server"></asp:ContentPlaceHolder>
+       
+    </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style>
+        * {
+            margin: 0px;
+        }
+        body {
+            background: #f1f3f6;
+            letter-spacing: -.2px;
+        }
+        ::-webkit-scrollbar {
+            width: 0px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0094ff;
+        }
+        #header {
+            width: 100%;
+            height: 130px;
+            background: #0094ff;
+            display: flex;
+            justify-content: center;
+            z-index: -2;
+        }
+
+        #pagetitle {
+            font-size: 60px;
+            font-family: 'Script MT';
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        #searchbartable {
+            margin: auto;
+        }
+
+        #searchbar {
+            width: 700px;
+            height: 32px;
+            border: 1px solid #ffffff;
+            font-size: 15px;
+            border-radius: 3px 0 0 3px;
+            position: relative;
+            top: 0px;
+            padding-left: 5px;
+        }
+        .srchbtn {
+            height: 32px;
+            width: 80px;
+            position: relative;
+            left: -5px;
+            background: #ffffff;
+            border-radius: 0px 3px 3px 0px;
+            border: 1px solid #ffffff;
+            transition: 0.1s ease-out;
+            z-index: 0;
+        }
+        .srchbtn:hover {
+            background: #e4e4e4;
+        }
+        #categories {
+            margin: auto;
+            position: absolute;
+            top: 105px;
+        }
+        #categories a {
+            color: #ffffff;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-family: Cambria;
+            text-decoration: none;  
+        }
+        #categories a:hover {
+            text-decoration: underline;
+            color: #171717;
+        }
+        .dpsrch {
+            color: #ffffff;
+            font-family: Cambria;
+            padding: 10px 15px 10px 15px;
+            text-decoration: none;
+            background: #008cf1;
+            transform: translateY(0px);
+            border-top: 0px solid #970202;
+            border-bottom: 0 solid #FFF;
+            border-right: 0 solid #FFF;
+            border-left: 0 solid #FFF;
+            position: relative;
+            border-radius: 3px;
+            min-width: 120px;
+        }
+        .dpsrch:hover {
+            background: #006ab6;
+            cursor: pointer;
+        }
+        .dpsrch:active {
+            border-top: 5px solid #053d65;
+            padding: 10px 15px 5px 15px;
+        }
+        #toptable {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+        }
+        .toptablecss {
+            padding-left: 10px;
+            padding-right: 10px;
+            color: #ffffff;
+            font-family: Cambria;
+            text-decoration: none;
+        }
+        .toptablecss:hover {
+            text-decoration: underline;
+        }
+        .auto-style1 {
+            left: 0px;
+            top: 0px;
+        }
+        footer {
+            width: 100%;
+            height: inherit;
+            padding-top: 10px;
+            background: #fff;
+            border-top: 1px solid #d4d4d4;
+            float: left;
+            margin-top: 10px;
+        }
+        #footertables {
+            display: flex;
+            justify-content: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #d4d4d4;
+        }
+        .footertable1 {
+            color: #1f1f1f;
+            font-size: 15px;
+            font-family: Calibri;
+            margin: auto;
+            text-align: left;
+            width: 200px;
+            float: left;
+        }
+        .footertable1 a {
+            color: #7c7c7c;
+            text-decoration: none;
+        }
+        .footertable1 a:hover {
+            text-decoration: underline;
+            color: #0094ff;
+        }
+        #socialfeeds {
+            float: right;
+            margin-right: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        .socialicons {
+            width: 50px;
+            height: 50px;
+            border-radius: 3px;
+            float: left;
+            margin-left: 5px;
+            transition: 0.2s ease-out;
+        }
+        .socialicons:hover {
+            border-radius: 100%;
+            transform: translateY(-3px);
+        }
+        #searchbartable .dpsrch {
+            font-size: 15px;
+        }
+        #loginerrormsgbx {
+            width: 100%;
+            height: 1000px;
+            background: rgba(0, 0, 0, 0.48);
+            position: fixed;
+            top: 0px;
+            z-index: 1000;
+        }
+        #lebox {
+            width: 100%;
+            height: 200px;
+            background: #fff;
+            margin-top: 20%;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.46);
+            position: relative;
+            text-align: center;
+        }
+        #lebox h2 {
+            font-size: 50px;
+            color: #008cf1;
+            font-family: 'Script MT';
+            padding: 10px 0 10px 0;
+            position: relative;
+            top: 30px;
+        }
+        #lebox h3 {
+            font-size: 20px;
+            color: #303030;
+            font-family: Cambria;
+            font-style: italic;
+            position: relative;
+            top: 30px;
+        }
+        .oklgemsgbx {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            font-family: Roboto;
+            font-weight: bold;
+            font-size: 12px;
+            width: 40px;
+            height: 40px;
+            padding: 10px;
+            border-radius: 100%;
+            border: none;
+            background: #fff;
+            cursor: pointer;
+            transition: 0.1s ease-out;
+            outline: none;
+        }
+        .oklgemsgbx:hover {
+            text-shadow: 0 1px 1px #2e2e2e;
+            background: #ff8383;
+            color: #fff;
+            box-shadow: 0 0 30px #000 inset;
+        }
+        .loginbtninpanel {
+            border: none;
+            width: 100px;
+            height: 30px;
+            border-radius: 100% 100% 0 0;
+            box-shadow: 0 0 10px #bebebe;
+            background: #fff;
+            color: #000;
+            position: absolute;
+            bottom: 0px;
+            font-family: Roboto;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.1s ease-in-out;
+            outline: none;
+        }
+        .loginbtninpanel:hover {
+            background: #008cf1;
+            color: #fff;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <div id="header">
+
+                <table id="searchbartable" border="0">
+                    <tr>
+                        <td>
+                            <a href="../MAIN_PAGES/Home.aspx" id="pagetitle">Luci&nbsp; </a>
+                        </td>
+                        <td>
+                            <asp:TextBox ID="searchbar" runat="server" CssClass="auto-style1" TextMode="Search" placeholder="Search" title="Search"></asp:TextBox>
+                        </td>
+                        <td>
+                            <asp:Button ID="srchbtn" runat="server" Text="Search" CssClass="srchbtn" OnClick="srchbtn_Click" />
+                        </td>
+                        <td><asp:Button ID="srch1" class="dpsrch" runat="server" Text="ADVANCE SEARCH" ValidateRequestMode="Inherit" CausesValidation="False" OnClick="srch1_Click" /></td>
+                        <td></td>
+                        <td>
+                            <asp:Button ID="Button1" runat="server" Text="MY ACCOUNT" CssClass="dpsrch" OnClick="Button1_Click" ValidateRequestMode="Inherit" CausesValidation="False" />
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+                <table id="toptable">
+                    <tr>
+                        <td>
+                            <asp:Label ID="Label7" runat="server" CssClass="toptablecss" Text="24x7 cc"></asp:Label>
+                        </td>
+                        <td>
+                            
+                            <asp:LinkButton ID="LinkButton1" runat="server" CssClass="toptablecss" OnClick="LinkButton1_Click1">Advertise</asp:LinkButton>
+                            
+                        </td>
+                        <td>
+                            <asp:Label ID="Label3" runat="server" CssClass="toptablecss" Text="About"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:LinkButton ID="Signupbtnlk" runat="server" CssClass="toptablecss" OnClick="signupbtnlk_Click">Signup</asp:LinkButton>
+                        </td>
+                        <td>
+                            <asp:LinkButton ID="Loginbtn" runat="server" CausesValidation="false" CssClass="toptablecss" OnClick="LinkButton1_Click">Login</asp:LinkButton>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+                <asp:Panel ID="Panel1" runat="server" Visible="False">
+                    <div id="loginerrormsgbx">
+                        <div id="lebox">
+                            <h2>Forget something!!</h2>
+                            <h3>Please Login to View Your Account Details</h3>
+                            <asp:Button runat="server" ID="okbtn" Text="x" CssClass="oklgemsgbx" OnClick="okbtn_Click"/>
+                            <asp:Button ID="Button2" runat="server" Text="LOGIN" CssClass="loginbtninpanel" OnClick="Button2_Click" />
+                        </div>
+                    </div>
+                </asp:Panel>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+
+            </asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+            </asp:ContentPlaceHolder>
+            <footer>
+                <div id="footertables">
+                <table class="footertable1">
+                    <tr><th>HELP</th></tr>
+                    <tr><td><a href="#">Payments</a></td></tr>
+                    <tr><td><a href="#">FAQ</a></td></tr>
+                </table>
+                <table class="footertable1">
+                    <tr><th>LUCI</th></tr>
+                    <tr><td><a href="../MAIN_PAGES/ContactUs.aspx">Contact Us</a></td></tr>
+                    <tr><td><a href="#">About</a></td></tr>
+                </table>
+                <table class="footertable1">
+                    <tr><th>OPERATORS</th></tr>
+                    <tr><td><a href="../MAIN_PAGES/LoginPage.aspx">Login</a></td></tr>
+                    <tr><td><a href="../MAIN_PAGES/SignupPage.aspx">Create Account</a></td></tr>
+                </table>
+               </div>
+                <table id="socialfeeds">
+                    <tr><td><a href="#"><img src="../Images/fbicon.png" class="socialicons"/></a></td>
+                    <td><a href="#"><img src="../Images/twitterico.png" class="socialicons"/></a></td>
+                    <td><a href="#"><img src="../Images/instaicon.png" class="socialicons"/></a></td></tr>
+                </table>
+            </footer>
+        </div>
+    </form>
+</body>
+</html>
